@@ -6,23 +6,28 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 17:55:36 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 13:56:02 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/12 18:04:09 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int ft_printf_string(t_print *all, va_list ap)
+int			ft_printf_string(t_print *all, va_list ap)
 {
-    int size;
-	char *str;
+	int		size;
+	char	*str;
 
 	size = 0;
 	str = va_arg(ap, char *);
 	if (str == NULL)
 	{
-		ft_putstr("(null)");
-		return (6);
+		if (all->flags->zero == 0)
+		{
+			ft_putstr("(null)");
+			return (6);
+		}
+		else
+			str = "";
 	}
 	if (all->prec != 0 && all->prec < (int)ft_strlen(str))
 	{
@@ -31,5 +36,6 @@ int ft_printf_string(t_print *all, va_list ap)
 		free(str);
 		return (size);
 	}
-	return (ft_output(all, str, ft_strlen(str)));
+	size = ft_output(all, str, ft_strlen(str));
+	return (size);
 }

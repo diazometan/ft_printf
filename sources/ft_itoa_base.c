@@ -6,19 +6,22 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:27:29 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 14:30:53 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/12 18:53:18 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-char *ft_itoa_base(long long int nbr, int base)
+char				*ft_itoa_base(long long int nbr, int base)
 {
-	char *str;
-	long long int tmp;
-	int i;
-	int sign;
+	char			*str;
+	long long int	tmp;
+	int				i;
+	int				sign;
 
+	if (nbr < 0)
+		if (nbr == LONG_MIN)
+			return (ft_strdup("9223372036854775808"));
 	tmp = (nbr < 0) ? -nbr : nbr;
 	sign = (nbr < 0 && base == 10) ? -1 : 0;
 	i = 1;

@@ -6,7 +6,7 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 10:55:58 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 12:56:32 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/12 18:57:18 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+
+# define LONG_MIN -9223372036854775808U
 
 typedef struct	s_flags
 {

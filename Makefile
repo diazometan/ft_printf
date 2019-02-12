@@ -6,15 +6,13 @@
 #    By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/09 14:59:20 by lwyl-the          #+#    #+#              #
-#    Updated: 2019/02/12 15:12:47 by lwyl-the         ###   ########.fr        #
+#    Updated: 2019/02/12 19:02:37 by lwyl-the         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = printf
+NAME = libftprintf.a
 
-NAME_LIB = libftprintf.a
-
-LIB = libft/libft.a
+FLAGS = -Wall -Wextra -Werror
 
 SRC =	sources/ft_itoa_base.c\
 		sources/ft_final_print.c\
@@ -28,56 +26,38 @@ SRC =	sources/ft_itoa_base.c\
 		sources/ft_printf_decimal.c\
 		sources/ft_printf_percent.c\
 		sources/ft_printf_unsigned.c\
-		sources/ft_simple.c
+		sources/ft_printf.c
 
 SRC_LIB =	libft/ft_putchar.c\
 			libft/ft_putstr.c\
 			libft/ft_strlen.c\
 			libft/ft_strsub.c\
 			libft/ft_atoi.c\
-#OBJ = $(SRC:.c=.o)
-
-#all: $(NAME)
-
-#$(NAME): $(OBJ) $(LIB)
-#	gcc -o $(NAME) -Llibft -lft $(OBJ)
-
-#.c.o:
-#	gcc -I includes -Ilibft -o $@ -c $<
-
-#$(LIB):
-#	cd libft && make
-#	cd libft && make clean
-
-#clean:
-#	rm -f $(OBJ)
-
-#fclean: clean
-#	rm -f $(NAME)
-#	cd libft && make fclean
-
-#re: fclean all
+			libft/ft_isdigit.c\
+			libft/ft_memset.c\
+			libft/ft_strchr.c\
+			libft/ft_strdel.c\
+			libft/ft_strdup.c\
+			libft/ft_strnew.c
 
 OBJ = $(SRC:.c=.o)
 
 OBJ_LIB = $(SRC_LIB:.c=.o)
 
-all: $(NAME_LIB)
+all: $(NAME)
 
-$(NAME_LIB): $(OBJ) $(OBJ_LIB)
-	ar rc $(NAME_LIB) $(OBJ) $(OBJ_LIB)
-	ranlib $(NAME_LIB)
+$(NAME): $(OBJ_LIB) $(OBJ)
+	ar rc $(NAME) $(OBJ) $(OBJ_LIB)
+	ranlib $(NAME)
 
-$(OBJ): $(SRC)
-	gcc -c $(SRC) -I includes
-
-$(OBJ_LIB): $(SRC_LIB)
-	gcc -c $(SRC_LIB) -I libft/includes
+.c.o:
+	gcc -I includes -I libft/includes -o $@ -c $<
 
 clean:
 	rm -rf $(OBJ)
+	rm -rf $(OBJ_LIB)
 
 fclean: clean
-	rm -rf $(NAME_LIB)
+	rm -rf $(NAME)
 
 re: fclean all

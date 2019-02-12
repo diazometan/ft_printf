@@ -6,13 +6,13 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:01:46 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 14:13:07 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/12 15:24:12 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int ft_choose_function(t_print *all, va_list ap)
+int	ft_choose_function(t_print *all, va_list ap)
 {
 	if (all->type == 's')
 		return (ft_printf_string(all, ap));

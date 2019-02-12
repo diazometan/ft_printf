@@ -6,7 +6,7 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 18:57:45 by jlesch            #+#    #+#             */
-/*   Updated: 2019/02/12 14:12:33 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/12 20:11:03 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void		struct_filler(char *str, t_print *all, int j)
 	}
 	all->width = width;
 	all->prec = prec;
-	if (all->prec == 0)
-		all->prec = -1;
+	if (all->prec >= all->width)
+		all->flags->zero = 0;
 }
 
 void		size_filler(char *str, t_print *all)
@@ -137,5 +137,6 @@ int			struct_creator(char *s, int *words, t_print *all, va_list ap)
 	printf("prec %d\n", all->prec);
 	printf("size %d\n", all->size);
 	printf("type %c\n", all->type);*/
+	//printf("prec %d\n", all->prec);
 	return (i + j + 1);
 }

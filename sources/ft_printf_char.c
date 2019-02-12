@@ -6,16 +6,16 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 18:16:44 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 13:56:12 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/12 15:20:16 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int ft_printf_char(t_print *all, va_list ap)
+int		ft_printf_char(t_print *all, va_list ap)
 {
-	int size;
-	int c;
+	int	size;
+	int	c;
 
 	c = (unsigned char)va_arg(ap, int);
 	size = 1;

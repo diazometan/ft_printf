@@ -6,17 +6,17 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:08:45 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 13:56:20 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/12 15:29:20 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-static char *ft_itoa_pointer(unsigned long long int nbr, int base)
+static char					*ft_itoa_pointer(unsigned long long nbr, int base)
 {
-	char *str;
-	unsigned long long int tmp;
-	int i;
+	char					*str;
+	unsigned long long		tmp;
+	int						i;
 
 	tmp = nbr;
 	i = 1;
@@ -33,11 +33,11 @@ static char *ft_itoa_pointer(unsigned long long int nbr, int base)
 	return (str);
 }
 
-int ft_printf_pointer(t_print *all, va_list ap)
+int							ft_printf_pointer(t_print *all, va_list ap)
 {
-	char *p;
-	unsigned long long int point;
-	int size;
+	char					*p;
+	unsigned long long		point;
+	int						size;
 
 	point = (unsigned long long int)va_arg(ap, void *);
 	p = ft_itoa_pointer(point, 16);
