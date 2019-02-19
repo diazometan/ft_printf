@@ -6,7 +6,7 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 18:08:34 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/18 19:46:53 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:32:31 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void			ft_bits(char a)
 
 int					ft_printf_bits(int count, va_list ap)
 {
-	long double		*a;
 	void			*str;
 	int				size;
 

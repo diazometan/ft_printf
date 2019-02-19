@@ -6,7 +6,7 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 18:57:45 by jlesch            #+#    #+#             */
-/*   Updated: 2019/02/18 22:12:07 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/19 18:32:26 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static void	ft_width_check(t_print *all, char *s, int j)
 
 void		struct_filler(char *s, t_print *all, int j)
 {
-	int	i;
 	int	k;
 
 	k = j;

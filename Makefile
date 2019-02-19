@@ -6,7 +6,7 @@
 #    By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/09 14:59:20 by lwyl-the          #+#    #+#              #
-#    Updated: 2019/02/18 13:36:15 by lwyl-the         ###   ########.fr        #
+#    Updated: 2019/02/19 18:26:06 by lwyl-the         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ $(NAME): $(OBJ_LIB) $(OBJ)
 	ranlib $(NAME)
 
 .c.o:
-	gcc -I includes -I libft/includes -o $@ -c $<
+	gcc $(FLAGS) -I includes -I libft/includes -o $@ -c $<
 
 clean:
 	rm -rf $(OBJ)
