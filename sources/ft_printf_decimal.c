@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_decimal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlesch <jlesch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 17:37:55 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 21:02:16 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/17 12:33:12 by jlesch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static char			*ft_specifier(t_print *all, va_list ap)
 		decimal = (long long int)va_arg(ap, long long int);
 	if (decimal < 0)
 		all->flags->plus = 2;
-	if (decimal == 0 && all->size == 0 && all->flags->plus != 1) //костыль
-		all->flags->plus = 3;
+	if (decimal == 0)
+		all->flags->noll = 1;
 	d = ft_itoa_base(decimal, 10);
 	return (d);
 }
@@ -43,10 +43,17 @@ int					ft_printf_decimal(t_print *all, va_list ap)
 
 	size = 0;
 	d = ft_specifier(all, ap);
-	if (all->prec > 0)
+	if (all->prec != 0)
 		all->flags->zero = 0;
-	if (all->flags->plus == 3)
-		size = ft_output(all, "", 0);
+	if (all->prec == -1 && all->flags->noll == 1)
+	{
+		if (all->width != 0)
+			all->flags->space = 0;
+		if (all->flags->plus == 1 || all->flags->space)
+			size = ft_output(all, "", 1);
+		else
+			size = ft_output(all, "", 0);
+	}
 	else if (all->flags->plus != 0 || all->flags->space != 0)
 		size = ft_output(all, d, ft_strlen(d) + 1);
 	else

@@ -1,35 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_percent.c                                :+:      :+:    :+:   */
+/*   ft_printf_bits.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/11 18:27:50 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/14 15:17:12 by lwyl-the         ###   ########.fr       */
+/*   Created: 2019/02/17 18:08:34 by lwyl-the          #+#    #+#             */
+/*   Updated: 2019/02/18 19:46:53 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-int		ft_printf_percent(t_print *all)
+static void			ft_bits(char a)
 {
-	int	size;
+	int				i;
+	char			b;
 
-	size = 1;
-	while (size < all->width && !all->flags->minus)
+	i = 0;
+	while (i < 8)
 	{
-		if (all->flags->zero == 1)
-			ft_putchar('0');
-		else
-			ft_putchar(' ');
-		size++;
+		b = '0' + ((a >> (7 - i)) & 1);
+		write(1, &b, 1);
+		i++;
 	}
-	ft_putchar('%');
-	while (size < all->width && all->flags->minus)
+}
+
+int					ft_printf_bits(int count, va_list ap)
+{
+	long double		*a;
+	void			*str;
+	int				size;
+
+	size = 8 * count + 3 * (count - 1);
+	str = va_arg(ap, void *);
+	while (count > 0)
 	{
-		ft_putchar(' ');
-		size++;
+		count--;
+		ft_bits(((char *)str)[count]);
+		if (count != 0)
+			write(1, "   ", 3);
 	}
 	return (size);
 }

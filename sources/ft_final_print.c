@@ -6,11 +6,9 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 12:59:42 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 21:05:17 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/18 21:44:18 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//в size приходит длина строки без точности
 
 #include "../includes/printf.h"
 
@@ -65,28 +63,33 @@ static char	*ft_precision(t_print *all, char *str)
 		while (size >= 0 && i >= 0)
 			new_str[size--] = str[i--];
 	}
-	free(tmp_str);
 	return (new_str);
 }
 
 int			ft_output(t_print *all, char *str, int size)
 {
+	int flag;
+
+	flag = 0;
 	if (all->prec > 0 && (all->type == 'f' || (all->prec > (int)ft_strlen(str)
 				&& all->type != '%' && all->type != 's')))
 	{
-		size = size + all->prec - (int)ft_strlen(str);
+		if (all->type != 'f')
+			size = size + all->prec - (int)ft_strlen(str);
 		str = ft_precision(all, str);
+		flag = 1;
 	}
 	while (size < all->width && !all->flags->minus && !all->flags->zero)
 		ft_put_symbol(&size, ' ');
 	if (all->flags->sharp == 1)
 		ft_check_sharp(all);
-	if (all->type == 'd')
+	if (all->type == 'd' || all->type == 'f')
 		ft_check_flags(all);
 	while (size < all->width && !all->flags->minus && all->flags->zero)
 		ft_put_symbol(&size, '0');
-	ft_putstr(str);
-	//write(1, str, ft_strlen(str));
+	write(1, str, ft_strlen(str));
+	if (flag == 1)
+		free(str);
 	while (size < all->width && all->flags->minus)
 		ft_put_symbol(&size, ' ');
 	return (size);

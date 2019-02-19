@@ -6,7 +6,7 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:08:45 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 15:29:20 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/14 15:19:31 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ int							ft_printf_pointer(t_print *all, va_list ap)
 	int						size;
 
 	point = (unsigned long long int)va_arg(ap, void *);
+	if (point == 0 && all->prec == -1)
+	{
+		size = ft_output(all, "0x", 2);
+		return (size);
+	}
 	p = ft_itoa_pointer(point, 16);
 	all->flags->sharp = 1;
 	size = ft_output(all, p, ft_strlen(p) + 2);

@@ -6,17 +6,18 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:25:55 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 20:14:19 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/15 16:13:16 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
 
-static char				*ft_itoa_hex(unsigned long long nbr, int base, char c)
+static char					*ft_itoa_hex(unsigned long long nbr,
+									int base, char c)
 {
-	char				*str;
-	unsigned long long	tmp;
-	int					i;
+	char					*str;
+	unsigned long long		tmp;
+	int						i;
 
 	tmp = nbr;
 	i = 1;
@@ -46,23 +47,32 @@ static unsigned long long	ft_specifier(t_print *all, va_list ap)
 	return (va_arg(ap, unsigned long long));
 }
 
-int						ft_printf_hex(t_print *all, va_list ap)
+static int					ft_printf_null(t_print *all)
 {
-	int					size;
-	char				*h;
-	unsigned long long	hex;
+	int						size;
+
+	size = 0;
+	all->flags->sharp = 0;
+	all->type = 'x';
+	if (all->prec == -1)
+		size = ft_output(all, "", 0);
+	else
+		size = ft_output(all, "0", 1);
+	return (size);
+}
+
+int							ft_printf_hex(t_print *all, va_list ap)
+{
+	int						size;
+	char					*h;
+	unsigned long long		hex;
 
 	size = 0;
 	hex = ft_specifier(all, ap);
+	if (all->prec != 0)
+		all->flags->zero = 0;
 	if (hex == 0)
-	{
-		all->flags->sharp = 0;
-		all->type = 'x';
-		if (all->prec == 0)
-			size = ft_output(all, "0", 1);
-		else
-			size = ft_output(all, "", 0);
-	}
+		size = ft_printf_null(all);
 	else
 	{
 		if (all->type == 'X')

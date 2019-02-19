@@ -6,7 +6,7 @@
 #    By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/09 14:59:20 by lwyl-the          #+#    #+#              #
-#    Updated: 2019/02/12 19:02:37 by lwyl-the         ###   ########.fr        #
+#    Updated: 2019/02/18 13:36:15 by lwyl-the         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ FLAGS = -Wall -Wextra -Werror
 
 SRC =	sources/ft_itoa_base.c\
 		sources/ft_final_print.c\
-		sources/ft_struct.c\
+		sources/ft_struct_one.c\
+		sources/ft_struct_two.c\
 		sources/ft_choose_function.c\
 		sources/ft_printf_string.c\
 		sources/ft_printf_char.c\
@@ -26,6 +27,8 @@ SRC =	sources/ft_itoa_base.c\
 		sources/ft_printf_decimal.c\
 		sources/ft_printf_percent.c\
 		sources/ft_printf_unsigned.c\
+		sources/ft_printf_float.c\
+		sources/ft_printf_bits.c\
 		sources/ft_printf.c
 
 SRC_LIB =	libft/ft_putchar.c\
@@ -38,6 +41,7 @@ SRC_LIB =	libft/ft_putchar.c\
 			libft/ft_strchr.c\
 			libft/ft_strdel.c\
 			libft/ft_strdup.c\
+			libft/ft_strcmp.c\
 			libft/ft_strnew.c
 
 OBJ = $(SRC:.c=.o)
@@ -55,9 +59,10 @@ $(NAME): $(OBJ_LIB) $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
-	rm -rf $(OBJ_LIB)
+	cd libft && make clean
 
 fclean: clean
 	rm -rf $(NAME)
+	cd libft && make fclean
 
 re: fclean all

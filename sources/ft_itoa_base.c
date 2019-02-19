@@ -6,11 +6,21 @@
 /*   By: lwyl-the <lwyl-the@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:27:29 by lwyl-the          #+#    #+#             */
-/*   Updated: 2019/02/12 18:53:18 by lwyl-the         ###   ########.fr       */
+/*   Updated: 2019/02/19 14:38:36 by lwyl-the         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/printf.h"
+
+int					ft_str_int(long long int nbr)
+{
+	int				i;
+
+	i = 1;
+	while ((nbr = nbr / 10) >= 1)
+		i++;
+	return (i);
+}
 
 char				*ft_itoa_base(long long int nbr, int base)
 {
